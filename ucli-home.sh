@@ -311,7 +311,7 @@ export_docs() {
     if [[ "$SCRIPT_DIR" == "/usr/local/bin" || "$SCRIPT_DIR" == "/usr/bin" || "$SCRIPT_DIR" == "/bin" || "$SCRIPT_DIR" == "/sbin" ]]; then
         echo -e "${RED}Error: The 'docs' command is intended for updating documentation files within a local repository checkout.${NC}"
         echo -e "${YELLOW}It should not be run from an installed system location like '$SCRIPT_DIR'.${NC}"
-        echo -e "${CYAN}To update repository docs, navigate to the script's directory in your local repository and run: ./ucli-home.sh docs${NC}"
+        echo -e "${CYAN}To update repository docs, navigate to the script's directory in your local repository and run: bash ./ucli-home.sh docs${NC}"
         exit 1
     fi
 
