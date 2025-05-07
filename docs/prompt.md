@@ -1,5 +1,5 @@
 # AI PROMPT GUIDE FOR UCLI-TOOLS
----
+
 
 This prompt can be fed to an AI. This allows AI to quickly understand the
 vision and design of the UCLI tools, allowing anyone to create tools with ease.
@@ -54,7 +54,7 @@ Tools are designed to be built and managed through the UCLI command:
 1.  Follow the standard directory structure.
 2.  Use the standard Makefile pattern exactly as shown.
 3.  Include all required functions in the bash script.
-4.  Use consistent color coding for terminal output (as demonstrated in `ucli-home.sh`).
+4.  Use consistent color coding for terminal output (as demonstrated in ucli-home.sh).
 5.  Include comprehensive help documentation.
 6.  Follow the Apache 2.0 ThreeFold license.
 
@@ -86,6 +86,6 @@ Follow these steps to develop and integrate your own tool, for example, one name
 
 This process ensures your tool is discoverable and manageable through the UCLI ecosystem.
 
----
+
 **CREATING CONSISTENT UCLI TOOLS**
----
+

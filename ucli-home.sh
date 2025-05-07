@@ -13,6 +13,112 @@ NC='\033[0m' # No Color
 
 # Function to display the manifesto
 show_manifesto() {
+    if [ "$1" == "--markdown" ]; then
+        echo "# UCLI-TOOLS MANIFESTO"
+        echo ""
+        echo "## Our Vision"
+        echo "UCLI-Tools is a genuine approach to making technology accessible to everyone."
+        echo "We combine the power of AI and open source to democratize knowledge and practical"
+        echo "technology applications, ensuring they are easy to use and available to all."
+        echo ""
+        echo "## Our Approach"
+        echo "1.  **Simplicity**: The Uncomplicated Command Line Interface (UCLI) makes complex"
+        echo "    tools accessible through simple, consistent commands."
+        echo ""
+        echo "2.  **Modularity**: Each tool is a standalone bash script that can be used"
+        echo "    independently or as part of the larger ecosystem."
+        echo ""
+        echo "3.  **Standardization**: All tools follow the same pattern with help, install,"
+        echo "    and uninstall functions, making them predictable and easy to learn."
+        echo ""
+        echo "4.  **Longevity**: We build for Ubuntu LTS releases (e.g., 2024's 5-year LTS),"
+        echo "    ensuring tools remain functional and relevant for years."
+        echo ""
+        echo "5.  **Adaptability**: Our design makes it easy to adapt tools to new Ubuntu"
+        echo "    versions as they are released."
+        echo ""
+        echo "## How It Works"
+        echo "UCLI-Tools is built on a simple yet powerful concept:"
+        echo ""
+        echo "*   All applications are bash scripts, making them lightweight and portable."
+        echo "*   A standard Makefile pattern is used across all tools for consistency."
+        echo "*   The UCLI command serves as the central interface to build and access all tools."
+        echo "*   Once built, tools are accessible directly from the command line."
+        echo ""
+        echo "For example, after building the 'gits' tool:"
+        echo "\`\`\`bash"
+        echo "ucli build gits"
+        echo "\`\`\`"
+        echo "You can use it directly from the command line:"
+        echo "\`\`\`bash"
+        echo "gits clone-all"
+        echo "\`\`\`"
+        echo ""
+        echo "## Our Commitment"
+        echo "We are committed to:"
+        echo "*   Maintaining open source under the Apache 2.0 ThreeFold license"
+        echo "*   Creating tools that solve real-world problems"
+        echo "*   Building a community of contributors and users"
+        echo "*   Continuously improving and expanding our toolkit"
+        echo ""
+        echo "## Get Started with UCLI"
+        echo ""
+        echo "1.  **Install UCLI**:"
+        echo "    First, install the UCLI main script. Run these commands in your terminal one by one:"
+        echo "    \`\`\`bash"
+        echo "    wget https://raw.githubusercontent.com/ucli-tools/ucli/main/ucli.sh"
+        echo "    bash ./ucli.sh install"
+        echo "    rm ./ucli.sh"
+        echo "    \`\`\`"
+        echo "    This makes the \`ucli\` command available system-wide."
+        echo ""
+        echo "2.  **Default Login**:"
+        echo "    Upon installation, UCLI is configured to access tools from the \`ucli-tools\` GitHub organization by default."
+        echo "    You can add other sources later if needed."
+        echo ""
+        echo "3.  **Install Prerequisites**:"
+        echo "    Some tools may require common prerequisite software. You can install them by running:"
+        echo "    \`\`\`bash"
+        echo "    ucli prereq"
+        echo "    \`\`\`"
+        echo ""
+        echo "4.  **Build and Install Tools**:"
+        echo "    To install a specific tool, for example 'gits', run:"
+        echo "    \`\`\`bash"
+        echo "    ucli build gits"
+        echo "    \`\`\`"
+        echo "    This downloads the tool and makes it available as a command (e.g., \`gits\`)."
+        echo ""
+        echo "5.  **Build All Available Tools**:"
+        echo "    To download and install all tools available from the default \`ucli-tools\` organization:"
+        echo "    \`\`\`bash"
+        echo "    ucli build-all"
+        echo "    \`\`\`"
+        echo ""
+        echo "6.  **Update Tools**:"
+        echo "    Keep your tools up-to-date with the latest releases:"
+        echo "    \`\`\`bash"
+        echo "    ucli update"
+        echo "    \`\`\`"
+        echo ""
+        echo "## Join Us"
+        echo "UCLI-Tools is more than just software—it's a movement to make technology"
+        echo "more accessible, understandable, and useful for everyone. Whether you're"
+        echo "a developer, a system administrator, or just someone who wants to get"
+        echo "things done efficiently, UCLI-Tools is for you."
+        echo ""
+        echo "Visit us at: [https://github.com/ucli-tools](https://github.com/ucli-tools)"
+        echo "License: Apache 2.0 ThreeFold"
+        echo ""
+        echo "To learn how to create tools aligned with the UCLI vision,"
+        echo "run: \`ucli-home prompt\`."
+        echo ""
+        echo ""
+        echo "**MAKING TECHNOLOGY FOR EVERYONE**"
+        echo ""
+        return
+    fi
+
     clear
     echo -e "${BOLD}${CYAN}═══════════════════════════════════════════════════════════════════════════${NC}"
     echo -e "${BOLD}${CYAN}                        UCLI-TOOLS MANIFESTO                               ${NC}"
@@ -187,10 +293,153 @@ help() {
     echo -e "  ${GREEN}help${NC}"
     echo -e "                  ${BLUE}Actions:${NC} Display this help message"
     echo -e "                  ${BLUE}Example:${NC} ucli-home help\n"
+
+    echo -e "  ${GREEN}docs${NC}"
+    echo -e "                  ${BLUE}Actions:${NC} Export embedded manifesto and AI prompt guide to Markdown files"
+    echo -e "                           (./docs/manifesto.md and ./docs/prompt.md relative to script's current location)."
+    echo -e "                           ${YELLOW}This command is for developers to update docs in a local repository clone.${NC}"
+    echo -e "                           It will not run if 'ucli-home' is executed from a system-wide install path."
+    echo -e "                  ${BLUE}Example:${NC} ./ucli-home.sh docs  (Run from the script's directory in your local repository)\\n"
+}
+
+# Function to export docs to Markdown
+export_docs() {
+    local SCRIPT_DIR
+    SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+    # Check if the script is being run from a typical system installation path
+    if [[ "$SCRIPT_DIR" == "/usr/local/bin" || "$SCRIPT_DIR" == "/usr/bin" || "$SCRIPT_DIR" == "/bin" || "$SCRIPT_DIR" == "/sbin" ]]; then
+        echo -e "${RED}Error: The 'docs' command is intended for updating documentation files within a local repository checkout.${NC}"
+        echo -e "${YELLOW}It should not be run from an installed system location like '$SCRIPT_DIR'.${NC}"
+        echo -e "${CYAN}To update repository docs, navigate to the script's directory in your local repository and run: ./ucli-home.sh docs${NC}"
+        exit 1
+    fi
+
+    local DOCS_DIR="$SCRIPT_DIR/docs"
+
+    echo -e "${GREEN}Exporting documentation to Markdown files...${NC}"
+    echo -e "${BLUE}Target directory: $DOCS_DIR${NC}" # Added for clarity
+
+    if mkdir -p "$DOCS_DIR"; then
+        echo -e "${BLUE}Ensured directory exists: $DOCS_DIR${NC}"
+    else
+        echo -e "${RED}Error: Could not create directory $DOCS_DIR${NC}"
+        exit 1
+    fi
+
+    if show_manifesto --markdown > "$DOCS_DIR/manifesto.md"; then
+        echo -e "${GREEN}Successfully exported manifesto to: $DOCS_DIR/manifesto.md${NC}"
+    else
+        echo -e "${RED}Error: Failed to export manifesto.${NC}"
+    fi
+
+    if show_prompt_info --markdown > "$DOCS_DIR/prompt.md"; then
+        echo -e "${GREEN}Successfully exported AI prompt guide to: $DOCS_DIR/prompt.md${NC}"
+    else
+        echo -e "${RED}Error: Failed to export AI prompt guide.${NC}"
+    fi
+    echo
+    echo -e "${PURPLE}Documentation export complete.${NC}"
+    echo -e "${YELLOW}Make sure to commit any changes to the docs/ directory if you are managing this in a git repository.${NC}"
 }
 
 # Function to display AI prompt information
 show_prompt_info() {
+    if [ "$1" == "--markdown" ]; then
+        echo "# AI PROMPT GUIDE FOR UCLI-TOOLS"
+        echo ""
+        echo ""
+        echo "This prompt can be fed to an AI. This allows AI to quickly understand the"
+        echo "vision and design of the UCLI tools, allowing anyone to create tools with ease."
+        echo ""
+        echo "## UCLI-Tools Design Pattern"
+        echo "The UCLI-Tools project follows a consistent design pattern that makes it easy"
+        echo "to create, build, and use command-line tools on Ubuntu systems. This guide"
+        echo "provides information for AI systems to understand and work with this pattern."
+        echo ""
+        echo "## Directory Structure"
+        echo "Each tool typically follows this structure:"
+        echo "\`\`\`"
+        echo "toolname/"
+        echo "├── toolname.sh    - Main bash script (executable)"
+        echo "├── Makefile       - Standard Makefile for installation"
+        echo "├── LICENSE        - Apache 2.0 ThreeFold license"
+        echo "└── README.md      - Documentation"
+        echo "\`\`\`"
+        echo ""
+        echo "## Standard Makefile Pattern"
+        echo "All tools use this standard Makefile pattern:"
+        echo "\`\`\`makefile"
+        echo "# Get the script name dynamically based on sole script in repo"
+        echo "SCRIPT_NAME := \$(wildcard *.sh)"
+        echo "INSTALL_NAME := \$(basename \$(SCRIPT_NAME))"
+        echo ""
+        echo "build:"
+        echo "	bash \$(SCRIPT_NAME) install"
+        echo ""
+        echo "rebuild:"
+        echo "	\$(INSTALL_NAME) uninstall"
+        echo "	bash \$(SCRIPT_NAME) install"
+        echo ""
+        echo "delete:"
+        echo "	\$(INSTALL_NAME) uninstall"
+        echo "\`\`\`"
+        echo ""
+        echo "## Bash Script Structure"
+        echo "Each tool's bash script should include these standard functions:"
+        echo "*   \`install()\`      - Installs the tool to \`/usr/local/bin\`"
+        echo "*   \`uninstall()\`    - Removes the tool from \`/usr/local/bin\`"
+        echo "*   \`help()\`         - Displays help information"
+        echo "*   \`main()\`         - Main execution logic with command handling"
+        echo ""
+        echo "## UCLI Integration"
+        echo "Tools are designed to be built and managed through the UCLI command:"
+        echo "*   \`ucli build toolname\`    - Builds and installs the tool"
+        echo "*   \`ucli list\`              - Lists available tools"
+        echo "*   \`ucli update\`            - Updates all installed tools"
+        echo ""
+        echo "## Best Practices for AI-Generated Tools"
+        echo "1.  Follow the standard directory structure."
+        echo "2.  Use the standard Makefile pattern exactly as shown."
+        echo "3.  Include all required functions in the bash script."
+        echo "4.  Use consistent color coding for terminal output (as demonstrated in ucli-home.sh)."
+        echo "5.  Include comprehensive help documentation."
+        echo "6.  Follow the Apache 2.0 ThreeFold license."
+        echo ""
+        echo "## Example: Creating a New UCLI Tool ('mytool')"
+        echo "Follow these steps to develop and integrate your own tool, for example, one named 'mytool':"
+        echo ""
+        echo "  **Part 1: Local Tool Development**"
+        echo "  1.  **Create Project Directory**: Make a directory for your tool: \`mkdir mytool && cd mytool\`"
+        echo "  2.  **Develop Bash Script**: Create your main tool script, e.g., \`mytool.sh\`."
+        echo "      Ensure it includes the standard \`install()\`, \`uninstall()\`, \`help()\`, and \`main()\` functions."
+        echo "  3.  **Add Standard Makefile**: Create a file named \`Makefile\` in your \`mytool/\` directory."
+        echo "      Copy the exact content of the 'Standard Makefile Pattern' (shown above) into this file."
+        echo "  4.  **Include License**: Create a \`LICENSE\` file in \`mytool/\` with the Apache 2.0 ThreeFold license text."
+        echo "  5.  **Write Documentation**: Create a \`README.md\` file in \`mytool/\` explaining how to use your tool."
+        echo ""
+        echo "  **Part 2: GitHub Integration and UCLI Build**"
+        echo "  6.  **Create GitHub Repository**:"
+        echo "      *   Create a new public GitHub repository. The repository name **must match** your tool's script name (e.g., \`mytool\` for \`mytool.sh\`)."
+        echo "      *   This repository can be under your personal GitHub account or an organization."
+        echo "      *   Push your \`mytool.sh\`, \`Makefile\`, \`LICENSE\`, and \`README.md\` files to this repository."
+        echo "  7.  **Configure UCLI Access**:"
+        echo "      *   If your repository is not under the default \`ucli-tools\` organization, you'll need to tell UCLI about your GitHub username or organization."
+        echo "      *   Use the command: \`ucli login <your_github_username_or_org>\`"
+        echo "  8.  **Build with UCLI**:"
+        echo "      *   Now, you (or others) can build and install your tool using UCLI:"
+        echo "          \`\`\`bash"
+        echo "          ucli build mytool"
+        echo "          \`\`\`"
+        echo ""
+        echo "This process ensures your tool is discoverable and manageable through the UCLI ecosystem."
+        echo ""
+        echo ""
+        echo "**CREATING CONSISTENT UCLI TOOLS**"
+        echo ""
+        return
+    fi
+
     clear
     echo -e "${BOLD}${CYAN}═══════════════════════════════════════════════════════════════════════════${NC}"
     echo -e "${BOLD}${CYAN}                  AI PROMPT GUIDE FOR UCLI-TOOLS                           ${NC}"
@@ -296,6 +545,9 @@ main() {
             ;;
         prompt)
             show_prompt_info
+            ;;
+        docs)
+            export_docs
             ;;
         help)
             help

@@ -1,5 +1,5 @@
 # UCLI-TOOLS MANIFESTO
----
+
 ## Our Vision
 UCLI-Tools is a genuine approach to making technology accessible to everyone.
 We combine the power of AI and open source to democratize knowledge and practical
@@ -97,6 +97,6 @@ License: Apache 2.0 ThreeFold
 To learn how to create tools aligned with the UCLI vision,
 run: `ucli-home prompt`.
 
----
+
 **MAKING TECHNOLOGY FOR EVERYONE**
----
+
