@@ -54,7 +54,7 @@ Tools are designed to be built and managed through the UCLI command:
 1.  Follow the standard directory structure.
 2.  Use the standard Makefile pattern exactly as shown.
 3.  Include all required functions in the bash script.
-4.  Use consistent color coding for terminal output (as demonstrated in ucli-home.sh).
+4.  Use consistent color coding for terminal output (as demonstrated in ucli-docs.sh).
 5.  Include comprehensive help documentation.
 6.  Follow the Apache 2.0 ThreeFold license.
 

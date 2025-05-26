@@ -95,7 +95,7 @@ Visit us at: [https://github.com/ucli-tools](https://github.com/ucli-tools)
 License: Apache 2.0 ThreeFold
 
 To learn how to create tools aligned with the UCLI vision,
-run: `ucli-home prompt`.
+run: `ucli-docs prompt`.
 
 
 **MAKING TECHNOLOGY FOR EVERYONE**
