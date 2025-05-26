@@ -1,5 +1,4 @@
 # ucli-tools
-<img src="./img/ucli_logo.jpeg" alt="ucli-logo" width="22%">
 
 ***Welcome to `ucli-tools`!***
 
