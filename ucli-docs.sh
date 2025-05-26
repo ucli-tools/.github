@@ -111,7 +111,7 @@ show_manifesto() {
         echo "License: Apache 2.0 ThreeFold"
         echo ""
         echo "To learn how to create tools aligned with the UCLI vision,"
-        echo "run: \`ucli-home prompt\`."
+        echo "run: \`ucli-docs prompt\`."
         echo ""
         echo ""
         echo "**MAKING TECHNOLOGY FOR EVERYONE**"
@@ -193,7 +193,7 @@ show_manifesto() {
     echo -e "License: ${BLUE}Apache 2.0 ThreeFold${NC}\n"
 
     echo -e "${CYAN}To learn how to create tools aligned with the UCLI vision,${NC}"
-    echo -e "${CYAN}run: ${GREEN}ucli-home prompt${NC}.\n"
+    echo -e "${CYAN}run: ${GREEN}ucli-docs prompt${NC}.\n"
 
     echo -e "${BOLD}${CYAN}═══════════════════════════════════════════════════════════════════════════${NC}"
     echo -e "${BOLD}${CYAN}                     MAKING TECHNOLOGY FOR EVERYONE                         ${NC}"
@@ -203,17 +203,17 @@ show_manifesto() {
 # Function to install the script
 install() {
     echo
-    echo -e "${GREEN}Installing UCLI-Home...${NC}"
+    echo -e "${GREEN}Installing UCLI-Docs...${NC}"
     if sudo -v; then
-        sudo cp "$0" /usr/local/bin/ucli-home
-        sudo chown root:root /usr/local/bin/ucli-home
-        sudo chmod 755 /usr/local/bin/ucli-home
+        sudo cp "$0" /usr/local/bin/ucli-docs
+        sudo chown root:root /usr/local/bin/ucli-docs
+        sudo chmod 755 /usr/local/bin/ucli-docs
 
         echo
-        echo -e "${PURPLE}UCLI-Home has been installed successfully.${NC}"
-        echo -e "You can now use ${GREEN}ucli-home${NC} command from anywhere."
+        echo -e "${PURPLE}UCLI-Docs has been installed successfully.${NC}"
+        echo -e "You can now use ${GREEN}ucli-docs${NC} command from anywhere."
         echo
-        echo -e "Use ${BLUE}ucli-home help${NC} to see the commands."
+        echo -e "Use ${BLUE}ucli-docs help${NC} to see the commands."
         echo
     else
         echo -e "${RED}Error: Failed to obtain sudo privileges. Installation aborted.${NC}"
@@ -224,10 +224,10 @@ install() {
 # Function to uninstall the script
 uninstall() {
     echo
-    echo -e "${GREEN}Uninstalling UCLI-Home...${NC}"
+    echo -e "${GREEN}Uninstalling UCLI-Docs...${NC}"
     if sudo -v; then
-        sudo rm -f /usr/local/bin/ucli-home
-        echo -e "${PURPLE}UCLI-Home has been uninstalled successfully.${NC}"
+        sudo rm -f /usr/local/bin/ucli-docs
+        echo -e "${PURPLE}UCLI-Docs has been uninstalled successfully.${NC}"
         echo
     else
         echo -e "${RED}Error: Failed to obtain sudo privileges. Uninstallation aborted.${NC}"
@@ -238,11 +238,11 @@ uninstall() {
 # Help function
 help() {
     echo -e "\n${ORANGE}═══════════════════════════════════════════${NC}"
-    echo -e "${ORANGE}              UCLI-Home                    ${NC}"
+    echo -e "${ORANGE}              UCLI-Docs                    ${NC}"
     echo -e "${ORANGE}═══════════════════════════════════════════${NC}\n"
 
-    echo -e "${PURPLE}Description:${NC} UCLI-Home displays the UCLI-Tools manifesto and mission statement."
-    echo -e "${PURPLE}Usage:${NC}       ucli-home [command]"
+    echo -e "${PURPLE}Description:${NC} UCLI-Docs displays the UCLI-Tools manifesto and mission statement."
+    echo -e "${PURPLE}Usage:${NC}       ucli-docs [command]"
     echo -e "${PURPLE}License:${NC}     Apache 2.0 ThreeFold"
     echo -e "${PURPLE}Code:${NC}        https://github.com/ucli-tools/home\n"
 
@@ -271,47 +271,48 @@ help() {
     echo -e "     ${PURPLE}ucli update${NC}\\\\n"
 
     echo -e "${CYAN}To learn how to create tools aligned with the UCLI vision,${NC}"
-    echo -e "${CYAN}run: ${GREEN}ucli-home prompt${NC}\\\\n"
+    echo -e "${CYAN}run: ${GREEN}ucli-docs prompt${NC}\\\\n"
 
     echo -e "${PURPLE}Commands:${NC}"
     echo -e "  ${GREEN}(no command)${NC}"
     echo -e "                  ${BLUE}Actions:${NC} Display the UCLI-Tools manifesto"
-    echo -e "                  ${BLUE}Example:${NC} ucli-home\n"
+    echo -e "                  ${BLUE}Example:${NC} ucli-docs\n"
 
     echo -e "  ${GREEN}prompt${NC}"
     echo -e "                  ${BLUE}Actions:${NC} Display AI prompt information for working with ucli-tools"
-    echo -e "                  ${BLUE}Example:${NC} ucli-home prompt\n"
+    echo -e "                  ${BLUE}Example:${NC} ucli-docs prompt\n"
 
     echo -e "  ${GREEN}install${NC}"
-    echo -e "                  ${BLUE}Actions:${NC} Install ucli-home to /usr/local/bin"
-    echo -e "                  ${BLUE}Example:${NC} ucli-home install\n"
+    echo -e "                  ${BLUE}Actions:${NC} Install ucli-docs to /usr/local/bin"
+    echo -e "                  ${BLUE}Example:${NC} ucli-docs install\n"
 
     echo -e "  ${GREEN}uninstall${NC}"
-    echo -e "                  ${BLUE}Actions:${NC} Remove ucli-home from /usr/local/bin"
-    echo -e "                  ${BLUE}Example:${NC} ucli-home uninstall\n"
+    echo -e "                  ${BLUE}Actions:${NC} Remove ucli-docs from /usr/local/bin"
+    echo -e "                  ${BLUE}Example:${NC} ucli-docs uninstall\n"
 
     echo -e "  ${GREEN}help${NC}"
     echo -e "                  ${BLUE}Actions:${NC} Display this help message"
-    echo -e "                  ${BLUE}Example:${NC} ucli-home help\n"
+    echo -e "                  ${BLUE}Example:${NC} ucli-docs help\n"
 
     echo -e "  ${GREEN}docs${NC}"
     echo -e "                  ${BLUE}Actions:${NC} Export embedded manifesto and AI prompt guide to Markdown files"
     echo -e "                           (./docs/manifesto.md and ./docs/prompt.md relative to script's current location)."
     echo -e "                           ${YELLOW}This command is for developers to update docs in a local repository clone.${NC}"
-    echo -e "                           It will not run if 'ucli-home' is executed from a system-wide install path."
-    echo -e "                  ${BLUE}Example:${NC} ./ucli-home.sh docs  (Run from the script's directory in your local repository)\\n"
+    echo -e "                           It will not run if 'ucli-docs' is executed from a system-wide install path."
+    echo -e "                  ${BLUE}Example:${NC} ./ucli-docs.sh docs  (Run from the script's directory in your local repository)\\\\n"
 }
 
 # Function to export docs to Markdown
 export_docs() {
     local SCRIPT_DIR
+{{ ... }}
     SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
     # Check if the script is being run from a typical system installation path
     if [[ "$SCRIPT_DIR" == "/usr/local/bin" || "$SCRIPT_DIR" == "/usr/bin" || "$SCRIPT_DIR" == "/bin" || "$SCRIPT_DIR" == "/sbin" ]]; then
         echo -e "${RED}Error: The 'docs' command is intended for updating documentation files within a local repository checkout.${NC}"
         echo -e "${YELLOW}It should not be run from an installed system location like '$SCRIPT_DIR'.${NC}"
-        echo -e "${CYAN}To update repository docs, navigate to the script's directory in your local repository and run: bash ./ucli-home.sh docs${NC}"
+        echo -e "${CYAN}To update repository docs, navigate to the script's directory in your local repository and run: bash ./ucli-docs.sh docs${NC}"
         exit 1
     fi
 
@@ -402,7 +403,7 @@ show_prompt_info() {
         echo "1.  Follow the standard directory structure."
         echo "2.  Use the standard Makefile pattern exactly as shown."
         echo "3.  Include all required functions in the bash script."
-        echo "4.  Use consistent color coding for terminal output (as demonstrated in ucli-home.sh)."
+        echo "4.  Use consistent color coding for terminal output (as demonstrated in ucli-docs.sh)."
         echo "5.  Include comprehensive help documentation."
         echo "6.  Follow the Apache 2.0 ThreeFold license."
         echo ""
@@ -494,7 +495,7 @@ show_prompt_info() {
     echo -e "1. ${YELLOW}Follow the standard directory structure${NC}"
     echo -e "2. ${YELLOW}Use the standard Makefile pattern exactly as shown${NC}"
     echo -e "3. ${YELLOW}Include all required functions in the bash script${NC}"
-    echo -e "4. ${YELLOW}Use consistent color coding for terminal output${NC} (as demonstrated in ucli-home.sh)"
+    echo -e "4. ${YELLOW}Use consistent color coding for terminal output${NC} (as demonstrated in ucli-docs.sh)"
     echo -e "5. ${YELLOW}Include comprehensive help documentation${NC}"
     echo -e "6. ${YELLOW}Follow the Apache 2.0 ThreeFold license${NC}\n"
 
@@ -553,8 +554,8 @@ main() {
             help
             ;;
         *)
-            echo -e "${RED}Error: Command '$1' not found in ucli-home${NC}"
-            echo -e "Run '${GREEN}ucli-home help${NC}' for usage information."
+            echo -e "${RED}Error: Command '$1' not found in ucli-docs${NC}"
+            echo -e "Run '${GREEN}ucli-docs help${NC}' for usage information."
             exit 1
             ;;
     esac
